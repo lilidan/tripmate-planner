@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TripMate Planner - Smart Travel Planning Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1>TripMate Planner</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#planner">Trip Planner</a></li>
+                    <li><a href="#bookings">Bookings</a></li>
+                    <li><a href="#recommendations">Recommendations</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h2>Plan Your Perfect Trip</h2>
+                <p>Smart travel planning tool that generates personalized itineraries, organizes flights and hotel bookings, and recommends attractions and restaurants.</p>
+                <button class="cta-button" onclick="scrollToSection('planner')">Start Planning</button>
+            </div>
+        </section>
+
+        <section id="planner" class="trip-planner">
+            <div class="container">
+                <h2>Create Your Itinerary</h2>
+                <form class="planner-form">
+                    <div class="form-group">
+                        <label for="destination">Destination</label>
+                        <input type="text" id="destination" placeholder="Where are you going?">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="start-date">Start Date</label>
+                            <input type="date" id="start-date">
+                        </div>
+                        <div class="form-group">
+                            <label for="end-date">End Date</label>
+                            <input type="date" id="end-date">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="travelers">Number of Travelers</label>
+                        <select id="travelers">
+                            <option value="1">Solo Traveler</option>
+                            <option value="2">2 People</option>
+                            <option value="3-4">Family (3-4)</option>
+                            <option value="5+">Group (5+)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Budget Range</label>
+                        <select id="budget">
+                            <option value="budget">Budget-Friendly</option>
+                            <option value="mid">Mid-Range</option>
+                            <option value="luxury">Luxury</option>
+                        </select>
+                    </div>
+                    <button type="button" class="generate-btn" onclick="generateItinerary()">Generate Itinerary</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="bookings" class="bookings">
+            <div class="container">
+                <h2>Flight & Hotel Bookings</h2>
+                <div class="booking-cards">
+                    <div class="booking-card">
+                        <h3>Flights</h3>
+                        <div class="booking-content">
+                            <p>Find and compare flight prices</p>
+                            <div class="flight-search">
+                                <input type="text" placeholder="From" class="flight-input">
+                                <input type="text" placeholder="To" class="flight-input">
+                                <input type="date" class="flight-input">
+                                <button class="search-btn">Search Flights</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="booking-card">
+                        <h3>Hotels</h3>
+                        <div class="booking-content">
+                            <p>Discover the best accommodations</p>
+                            <div class="hotel-search">
+                                <input type="text" placeholder="City or Hotel Name" class="hotel-input">
+                                <input type="date" placeholder="Check-in" class="hotel-input">
+                                <input type="date" placeholder="Check-out" class="hotel-input">
+                                <button class="search-btn">Search Hotels</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="recommendations" class="recommendations">
+            <div class="container">
+                <h2>Recommendations</h2>
+                <div class="recommendation-tabs">
+                    <button class="tab-btn active" onclick="showTab('attractions')">Attractions</button>
+                    <button class="tab-btn" onclick="showTab('restaurants')">Restaurants</button>
+                    <button class="tab-btn" onclick="showTab('activities')">Activities</button>
+                </div>
+                <div class="recommendation-content">
+                    <div id="attractions" class="tab-content active">
+                        <div class="recommendation-grid">
+                            <div class="recommendation-card">
+                                <h4>Top Attractions</h4>
+                                <p>Discover must-visit landmarks and cultural sites</p>
+                            </div>
+                            <div class="recommendation-card">
+                                <h4>Hidden Gems</h4>
+                                <p>Explore off-the-beaten-path locations</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="restaurants" class="tab-content">
+                        <div class="recommendation-grid">
+                            <div class="recommendation-card">
+                                <h4>Local Cuisine</h4>
+                                <p>Taste authentic local flavors and specialties</p>
+                            </div>
+                            <div class="recommendation-card">
+                                <h4>Fine Dining</h4>
+                                <p>Experience world-class restaurants</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="activities" class="tab-content">
+                        <div class="recommendation-grid">
+                            <div class="recommendation-card">
+                                <h4>Adventure Sports</h4>
+                                <p>Thrilling outdoor activities and sports</p>
+                            </div>
+                            <div class="recommendation-card">
+                                <h4>Cultural Experiences</h4>
+                                <p>Immerse in local culture and traditions</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="itinerary-result" class="itinerary-modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <h3>Your Personalized Itinerary</h3>
+                <div id="itinerary-details"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 TripMate Planner. Your perfect travel companion.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
